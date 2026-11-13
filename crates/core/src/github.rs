@@ -73,7 +73,7 @@ impl Default for GithubClient {
             .timeout_global(Some(DOWNLOAD_TIMEOUT))
             .timeout_connect(Some(CONNECT_TIMEOUT))
             // GitHub's API turns away a request without one.
-            .user_agent(concat!("roblox-manager/", env!("CARGO_PKG_VERSION")))
+            .user_agent(concat!("headcount/", env!("CARGO_PKG_VERSION")))
             .build();
         GithubClient { agent: ureq::Agent::new_with_config(config) }
     }

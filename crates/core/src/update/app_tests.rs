@@ -33,9 +33,9 @@ impl AppReleases for FakeReleases {
 
 fn release() -> Release {
     let names = [
-        format!("roblox-manager-{NEW}-x86_64.AppImage"),
-        format!("roblox-manager-{NEW}-x86_64.flatpak"),
-        format!("roblox-manager_{NEW}_amd64.deb"),
+        format!("headcount-{NEW}-x86_64.AppImage"),
+        format!("headcount-{NEW}-x86_64.flatpak"),
+        format!("headcount_{NEW}_amd64.deb"),
         SUMS.to_owned(),
     ];
     Release {
@@ -101,7 +101,7 @@ impl Sandbox {
     }
 
     fn appimage(&self) -> PathBuf {
-        let image = self.dir.path().join("Apps/roblox-manager.AppImage");
+        let image = self.dir.path().join("Apps/headcount.AppImage");
         fs::create_dir_all(image.parent().unwrap()).unwrap();
         fs::write(&image, b"old").unwrap();
         image
@@ -134,7 +134,7 @@ fn an_appimage_is_replaced_in_place_once_its_checksum_matches() {
     }
     let s = sandbox(SUM);
     let image = s.appimage();
-    let name = format!("roblox-manager-{NEW}-x86_64.AppImage");
+    let name = format!("headcount-{NEW}-x86_64.AppImage");
     s.install(&Install::AppImage(image.clone()), &FakeReleases::listing(&[&name])).unwrap();
     assert_eq!(fs::read(&image).unwrap(), b"new");
     assert_eq!(fs::metadata(&image).unwrap().permissions().mode() & 0o777, 0o755);
@@ -150,7 +150,7 @@ fn a_download_that_does_not_match_replaces_nothing() {
     }
     let s = sandbox("0000");
     let image = s.appimage();
-    let name = format!("roblox-manager-{NEW}-x86_64.AppImage");
+    let name = format!("headcount-{NEW}-x86_64.AppImage");
     let got = s.install(&Install::AppImage(image.clone()), &FakeReleases::listing(&[&name]));
     assert_eq!(got, Err(UpdateError::Checksum));
     assert_eq!(fs::read(&image).unwrap(), b"old");
@@ -173,7 +173,7 @@ fn a_package_goes_to_packagekit_and_is_kept_when_it_fails() {
         return;
     }
     let deb = Install::Package(PackageFormat::Deb);
-    let name = format!("roblox-manager_{NEW}_amd64.deb");
+    let name = format!("headcount_{NEW}_amd64.deb");
     let s = sandbox(SUM);
     s.install(&deb, &FakeReleases::listing(&[&name])).unwrap();
     let kept = s.paths.updates().join(&name);
@@ -194,7 +194,7 @@ fn a_flatpak_installs_its_bundle_on_the_host() {
         return;
     }
     let s = sandbox(SUM);
-    let name = format!("roblox-manager-{NEW}-x86_64.flatpak");
+    let name = format!("headcount-{NEW}-x86_64.flatpak");
     s.install(&Install::Flatpak, &FakeReleases::listing(&[&name])).unwrap();
     let flatpak = &s.runner.ran()[1];
     assert_eq!(flatpak[..5], ["flatpak-spawn", "--host", "flatpak", "install", "--user"]);
@@ -205,7 +205,7 @@ fn a_system_flatpak_asks_for_the_password_through_pkexec() {
     if !x86_64() {
         return;
     }
-    let name = format!("roblox-manager-{NEW}-x86_64.flatpak");
+    let name = format!("headcount-{NEW}-x86_64.flatpak");
     let system = "/var/lib/flatpak/app/x";
     let s = sandbox(SUM);
     s.install_from(&Install::Flatpak, &FakeReleases::listing(&[&name]), system).unwrap();
@@ -226,7 +226,7 @@ fn a_system_flatpak_asks_for_the_password_through_pkexec() {
 #[test]
 fn a_nix_install_says_how_to_update_it() {
     let s = sandbox(SUM);
-    let nix = Install::Native("/nix/store/x/bin/roblox-manager".into());
+    let nix = Install::Native("/nix/store/x/bin/headcount".into());
     let err = s.install(&nix, &FakeReleases::listing(&[])).unwrap_err();
     assert!(matches!(&err, UpdateError::Unsupported(why) if why.contains("Nix")), "{err}");
 }

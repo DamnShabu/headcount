@@ -1,6 +1,6 @@
-# Roblox Manager guide
+# Headcount guide
 
-Everything the manager does and where to find it. To install it, see the
+Everything Headcount does and where to find it. To install it, see the
 [README](../README.md#install).
 
 **Contents:** [Add an account](#add-an-account) ·
@@ -70,7 +70,7 @@ Tick the accounts to launch, then:
 | Button | What it does |
 | --- | --- |
 | **Launch** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>) | Starts every ticked account in the target. Roblox puts each one in whatever server it chooses; with a friend as the target, they all go to the friend's server. |
-| **Stop all** | Closes every client the manager started. |
+| **Stop all** | Closes every client Headcount started. |
 
 Each row also has its own launch and stop button for just that account, and
 a group's row launches or stops the whole group. Every account you launch
@@ -85,7 +85,7 @@ While an account runs, the eye button on its row hides its window: off the
 screen and off the taskbar, with the game still running at a low frame rate.
 Click it again to bring the window back. **Hide All Windows** and **Show All
 Windows** in the main menu do every account at once, and hidden windows stay
-hidden if you close and reopen the manager.
+hidden if you close and reopen Headcount.
 
 Hiding needs Stacked 0.21.7 or newer. If the button is missing, press
 **Update**, then launch the account again. A macro-ready window hides too,
@@ -125,7 +125,7 @@ The checkbox on a group's row ticks or unticks all of its accounts at once.
 
 <img src="screenshots/join-link.png" width="380" align="right" alt="The Join Game popup for Blox Fruits, listing accounts to join with">
 
-The manager can handle Roblox links, so clicking **Play** on roblox.com
+Headcount can handle Roblox links, so clicking **Play** on roblox.com
 opens a small popup instead of the full window. The popup shows the game and
 your accounts with what each is doing (in game, idle, signed out). Tick the
 ones you want and click **Join**. They all go into one server. Nothing
@@ -304,7 +304,7 @@ window hidden or on another workspace. More in [When steps](macros-when.md).
 ### Hotkeys
 
 Give a macro a hotkey in its editor. The hotkey runs or stops it on the
-ticked accounts while the manager's window has focus. To trigger a macro
+ticked accounts while Headcount's window has focus. To trigger a macro
 from anywhere, bind a key in your desktop's keyboard settings to:
 
 ```bash
@@ -321,11 +321,11 @@ before running one AFK.
 ## Updates
 
 The app checks GitHub when it starts and every six hours. When a new version
-of the manager or of Stacked (the Cordial build it uses) is out, an
+of Headcount or of Stacked (the Cordial build it uses) is out, an
 **Update** button appears in the header bar. **Update All** in the main menu
 also gets the newest Roblox build.
 
-The manager updates itself the same way it was installed. An AppImage
+Headcount updates itself the same way it was installed. An AppImage
 replaces its own file. The Flatpak reinstalls its bundle, and a system-wide
 Flatpak asks for your password through your desktop's prompt. A `.deb`, `.rpm`
 or Arch package installs through PackageKit, so you get your desktop's
@@ -376,7 +376,7 @@ support enabled.
 
 **Something else.** **Activity** keeps a log of this run. Each client's own
 log is in `~/.cache/rbxmgr/logs`. Please include both when you
-[open an issue](https://github.com/DamnShabu/roblox-manager/issues).
+[open an issue](https://github.com/DamnShabu/headcount/issues).
 
 ## Where your data is
 

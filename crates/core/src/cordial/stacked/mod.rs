@@ -203,7 +203,7 @@ fn write_launcher(target: &Path) -> Result<(), CordialError> {
     let script = format!(
         r#"#!/bin/sh
 # Stacked's engine, with the libraries its AppImage bundles. Written by the
-# Roblox manager's Update.
+# Headcount's Update.
 d={quoted}
 LD_LIBRARY_PATH="$d/usr/lib${{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}}"
 GSETTINGS_SCHEMA_DIR="$d/usr/share/glib-2.0/schemas"

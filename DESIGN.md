@@ -1,5 +1,5 @@
 ---
-name: Stacked
+name: Headcount
 description: One dark working window for running many Roblox clients at once; state at a glance, every control one click away.
 colors:
   bg: "#0f1013"
@@ -241,11 +241,11 @@ components:
     padding: "6px"
 ---
 
-<!-- Recorded from the shipped build of Stacked's main window (style.css :root
+<!-- Recorded from the shipped build of the main window, then named Stacked (style.css :root
 tokens, crates/app/src/ui, screenshots app-v7-wide/narrow) on 2026-10-14.
 Replaces the v0.10 "Roblox Manager" record. -->
 
-# Design System: Stacked
+# Design System: Headcount
 
 ## Overview
 
@@ -400,7 +400,7 @@ Quiet until pointed at; one red.
 A Control-room Black well with an inset Hairline ring and 2px padding; segments 26px, Secondary Grey. The chosen segment is Raised 2 with white text and the segment lift. Used for Performance (Low, Medium, High, Max).
 
 ### Navigation
-- **Header bar:** Side Layer, 52px: the mark, "Stacked" and a Dim Grey status line ("All idle"), a centred search, then add, refresh and the menu as icon buttons.
+- **Header bar:** Side Layer, 52px: the mark, "Headcount" and a Dim Grey status line ("All idle"), a centred search, then add, refresh and the menu as icon buttons.
 - **Sidebar:** Side Layer, 240px. Section heads in Dim Grey; 32px items with a Dim Grey leading icon and a right-aligned tabular count. The chosen item is Raised with its icon turned white. Groups show their game icon, macros a play or stop icon (green while playing).
 - **Tabs:** text tabs in Dim Grey, the current one white with a 2px white inset underline; the details pane's tabs are full head height (52px).
 - **Status bar:** Side Layer, 30px, 12px Dim Grey text: the multi-client risk line at the left, the last activity with its state-coloured icon, and the Activity drawer toggle (its chevron turns 180 degrees when open).

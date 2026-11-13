@@ -27,7 +27,7 @@ pub fn install() {
     match log.begin(std::process::id(), env!("CARGO_PKG_VERSION")) {
         Ok(found) => PENDING.with_borrow_mut(|p| *p = found),
         Err(e) => {
-            eprintln!("roblox-manager: no crash log this run ({}): {e}", log.dir().display());
+            eprintln!("headcount: no crash log this run ({}): {e}", log.dir().display());
             return;
         }
     }
@@ -46,7 +46,7 @@ pub fn install() {
         let backtrace = std::backtrace::Backtrace::force_capture().to_string();
         let report = crash::panic_report(&message, &location, &thread, &backtrace);
         if let Err(e) = hooked.panicked(&report) {
-            eprintln!("roblox-manager: could not write the crash log: {e}");
+            eprintln!("headcount: could not write the crash log: {e}");
         }
         previous(info);
     }));
@@ -68,7 +68,7 @@ pub fn end() {
     if let Some(log) = LOG.get()
         && let Err(e) = log.end()
     {
-        eprintln!("roblox-manager: could not mark a clean exit: {e}");
+        eprintln!("headcount: could not mark a clean exit: {e}");
     }
 }
 

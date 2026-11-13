@@ -11,11 +11,11 @@ fn strings(words: &[&str]) -> Vec<String> {
 #[test]
 fn a_window_relay_s_arguments_carry_the_display_and_the_whole_cage_command() {
     let argv = argv(
-        Path::new("/app/bin/roblox-manager"),
+        Path::new("/app/bin/headcount"),
         Path::new("/run/user/1000/rbxmgr/rbxmgr-7.wayland"),
         &strings(&["cage", "--", "sh", "-c", "x"]),
     );
-    assert_eq!(argv[..2], strings(&["/app/bin/roblox-manager", FLAG]));
+    assert_eq!(argv[..2], strings(&["/app/bin/headcount", FLAG]));
     assert_eq!(
         parse(&argv[2..]),
         Some((

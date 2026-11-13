@@ -232,14 +232,14 @@ fn a_macro_ready_launch_keeps_cages_off_the_display_they_open_on() {
 #[test]
 fn a_macro_ready_client_with_a_relay_runs_behind_it_inside_its_cage() {
     let w = world();
-    let profiles = w.profiles.with_relay(Some(PathBuf::from("/app/libexec/roblox-manager")));
+    let profiles = w.profiles.with_relay(Some(PathBuf::from("/app/libexec/headcount")));
     let p = Profile::named("rbxmgr-7");
     profiles
         .launch(&p, None, &build(), ClientOpts { nested: true, ..ClientOpts::default() })
         .unwrap();
     let (argv, _) = &w.runner.spawned()[0];
     let link = nested::display_file(&w.dir.path().join("run"), &p).display().to_string();
-    let relay = "/app/libexec/roblox-manager";
+    let relay = "/app/libexec/headcount";
     assert_eq!(argv[..6], [relay, "--window-relay", &link, "--", "cage", "--"], "cage behind one");
     assert_eq!(argv[9], link, "the display link, as the script's $0");
     assert_eq!(argv[10..15], [relay, "--relay", &link, "--", "cordial-run"]);
@@ -248,7 +248,7 @@ fn a_macro_ready_client_with_a_relay_runs_behind_it_inside_its_cage() {
 #[test]
 fn a_client_in_a_normal_window_never_runs_behind_a_relay() {
     let w = world();
-    let profiles = w.profiles.with_relay(Some(PathBuf::from("/app/libexec/roblox-manager")));
+    let profiles = w.profiles.with_relay(Some(PathBuf::from("/app/libexec/headcount")));
     let p = Profile::named("rbxmgr-7");
     profiles.launch(&p, None, &build(), ClientOpts::default()).unwrap();
     assert_eq!(w.runner.spawned()[0].0[0], "cordial-run");

@@ -44,6 +44,6 @@ fi
 "${cargo[@]}" clippy --quiet --all-targets -- -D warnings
 "${cargo[@]}" test --quiet >/dev/null
 git commit --quiet -am "release: v$version"
-git tag -a "v$version" -m "Roblox Manager $version"
+git tag -a "v$version" -m "Headcount $version"
 echo "Tagged v$version. Publish it with:"
 echo "  git push origin $(git branch --show-current) v$version"

@@ -39,7 +39,7 @@ jobs:
           persist-credentials: false
       - uses: DeterminateSystems/nix-installer-action@3138316df39ed29be04236d7ffc686fa525866aa # v23
       - run: nix flake check
-      - run: nix build .#roblox-manager --print-build-logs
+      - run: nix build .#headcount --print-build-logs
 
   # The Flatpak builds offline from cargo-sources.json, so a Cargo.lock change
   # without it (a Dependabot bump, say) only shows when a release fails.

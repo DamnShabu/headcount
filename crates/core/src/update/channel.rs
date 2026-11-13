@@ -15,7 +15,7 @@ pub const RESTARTED: &str = "--restarted";
 pub const APP_ID: &str = "io.github.mujo.RobloxManager";
 
 /// Where a package's launcher is.
-const PACKAGE_LAUNCHER: &str = "/usr/bin/roblox-manager";
+const PACKAGE_LAUNCHER: &str = "/usr/bin/headcount";
 
 /// The release file this install updates from, for `version`. None for an
 /// install that does not update itself (Nix, a hand-built binary), and on a
@@ -25,12 +25,12 @@ pub fn asset_name(install: &Install, version: &str) -> Option<String> {
         return None;
     }
     Some(match install {
-        Install::AppImage(_) => format!("roblox-manager-{version}-x86_64.AppImage"),
-        Install::Flatpak => format!("roblox-manager-{version}-x86_64.flatpak"),
-        Install::Package(PackageFormat::Deb) => format!("roblox-manager_{version}_amd64.deb"),
-        Install::Package(PackageFormat::Rpm) => format!("roblox-manager-{version}-1.x86_64.rpm"),
+        Install::AppImage(_) => format!("headcount-{version}-x86_64.AppImage"),
+        Install::Flatpak => format!("headcount-{version}-x86_64.flatpak"),
+        Install::Package(PackageFormat::Deb) => format!("headcount_{version}_amd64.deb"),
+        Install::Package(PackageFormat::Rpm) => format!("headcount-{version}-1.x86_64.rpm"),
         Install::Package(PackageFormat::Arch) => {
-            format!("roblox-manager-{version}-1-x86_64.pkg.tar.zst")
+            format!("headcount-{version}-1-x86_64.pkg.tar.zst")
         }
         Install::Native(_) => return None,
     })
@@ -138,12 +138,12 @@ mod tests {
             return;
         }
         let name = |i: Install| asset_name(&i, "0.3.0");
-        assert_eq!(name(Install::Flatpak).unwrap(), "roblox-manager-0.3.0-x86_64.flatpak");
+        assert_eq!(name(Install::Flatpak).unwrap(), "headcount-0.3.0-x86_64.flatpak");
         assert_eq!(
             name(Install::Package(PackageFormat::Deb)).unwrap(),
-            "roblox-manager_0.3.0_amd64.deb"
+            "headcount_0.3.0_amd64.deb"
         );
-        assert_eq!(name(Install::Native("/usr/bin/roblox-manager".into())), None);
+        assert_eq!(name(Install::Native("/usr/bin/headcount".into())), None);
     }
 
     #[test]

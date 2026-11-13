@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.mujo.RobloxManager</id>
-  <name>Roblox Manager</name>
+  <name>Headcount</name>
   <summary>Launch several Roblox accounts into the same server</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <!-- The manager is MIT; the Cordial runtime it bundles is GPL-3.0+. -->
@@ -29,8 +29,8 @@
     </p>
   </description>
   <launchable type="desktop-id">io.github.mujo.RobloxManager.desktop</launchable>
-  <url type="homepage">https://github.com/DamnShabu/roblox-manager</url>
-  <url type="bugtracker">https://github.com/DamnShabu/roblox-manager/issues</url>
+  <url type="homepage">https://github.com/DamnShabu/headcount</url>
+  <url type="bugtracker">https://github.com/DamnShabu/headcount/issues</url>
   <branding>
     <color type="primary" scheme_preference="light">#f3d9a8</color>
     <color type="primary" scheme_preference="dark">#5a4424</color>

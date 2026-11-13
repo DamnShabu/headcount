@@ -2,7 +2,7 @@
 //! client inside keeps its own window in cage -- where a macro's input
 //! lands, and which hiding the client's window would take away.
 //!
-//! Cage runs behind the window relay, `roblox-manager --window-relay
+//! Cage runs behind the window relay, `headcount --window-relay
 //! DISPLAY_FILE -- cage ...`, which gives cage a display of its own beside
 //! the display file and links every connection on it through to the
 //! desktop's. Told to hide on its control socket, it unmaps cage's window

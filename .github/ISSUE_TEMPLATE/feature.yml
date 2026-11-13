@@ -1,5 +1,5 @@
 name: Feature request
-description: Something the manager could do, or do better.
+description: Something Headcount could do, or do better.
 labels: [enhancement]
 body:
   - type: textarea

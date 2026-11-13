@@ -18,7 +18,7 @@ use crate::paths::Paths;
 use crate::version::is_newer;
 
 /// The app's repository.
-pub const REPO: &str = "DamnShabu/roblox-manager";
+pub const REPO: &str = "DamnShabu/headcount";
 
 /// The version running now.
 pub const RUNNING: &str = env!("CARGO_PKG_VERSION");
@@ -77,7 +77,7 @@ impl SelfUpdate<'_> {
         let version = &release.version;
         let name = asset_name(self.install, version).ok_or_else(|| {
             UpdateError::Unsupported(format!(
-                "Roblox Manager {version} is out, but this copy cannot update itself: {}",
+                "Headcount {version} is out, but this copy cannot update itself: {}",
                 channel::by_hand(self.install)
             ))
         })?;
@@ -99,7 +99,7 @@ impl SelfUpdate<'_> {
             fs::create_dir_all(parent).map_err(|e| io_error("could not create", parent, e))?;
         }
 
-        log(format!("Downloading Roblox Manager {version}..."));
+        log(format!("Downloading Headcount {version}..."));
         self.releases.download(&sums.url, &sums_file)?;
         let expected = fs::read_to_string(&sums_file)
             .map_err(|e| io_error("could not read", &sums_file, e))
@@ -136,7 +136,7 @@ impl SelfUpdate<'_> {
         version: &str,
         log: &dyn Fn(String),
     ) -> Result<(), UpdateError> {
-        log(format!("Installing Roblox Manager {version}..."));
+        log(format!("Installing Headcount {version}..."));
         match self.install {
             Install::AppImage(image) => {
                 fs::set_permissions(file, fs::Permissions::from_mode(0o755))
@@ -147,8 +147,7 @@ impl SelfUpdate<'_> {
                 let info = fs::read_to_string(self.flatpak_info).unwrap_or_default();
                 let installation = FlatpakInstallation::of(&info);
                 if installation == FlatpakInstallation::System {
-                    log("Roblox Manager is installed system-wide: enter your password when asked"
-                        .into());
+                    log("Headcount is installed system-wide: enter your password when asked".into());
                 }
                 let argv = channel::flatpak_install(installation, file);
                 let out = self.runner.run(&argv, Duration::from_secs(1800)).map_err(|e| {
@@ -211,7 +210,7 @@ fn remove(path: &Path) {
     if let Err(e) = fs::remove_file(path)
         && e.kind() != io::ErrorKind::NotFound
     {
-        eprintln!("roblox-manager: could not delete {}: {e}", path.display());
+        eprintln!("headcount: could not delete {}: {e}", path.display());
     }
 }
 

@@ -2,7 +2,7 @@
 
 ### Issue tracker
 
-Issues live in GitHub Issues for DamnShabu/roblox-manager (via `gh`). See `docs/agents/issue-tracker.md`.
+Issues live in GitHub Issues for DamnShabu/headcount (via `gh`). See `docs/agents/issue-tracker.md`.
 
 ### Domain docs
 
