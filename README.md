@@ -12,8 +12,9 @@
 
 <p align="center">
   <b>Your main and all your alts, signed in once and launched together.</b><br>
-  Headcount runs a room full of Roblox clients on Linux, plays macros into them
-  while you use your desktop, and tells you at a glance which one needs you.
+  Headcount is a Roblox account manager and multi-instance launcher for Linux.
+  It runs a room full of Roblox clients, plays macros into them while you use
+  your desktop, and tells you at a glance which one needs you.
 </p>
 
 <p align="center">
@@ -156,6 +157,23 @@ Macros can also be bound to a desktop hotkey:
 ```sh
 gapplication action io.github.mujo.RobloxManager run-macro "'Anti-AFK'"
 ```
+
+## FAQ
+
+**Can I run more than one Roblox client at once on Linux?** Yes, that is what
+Headcount is for. Tick the accounts and click **Launch**. Read the warning at
+the top first.
+
+**Do I need Sober, Wine or Waydroid?** No. Headcount downloads and updates its
+own runtime, [Stacked](https://github.com/DamnShabu/stacked), which runs
+Roblox's official Android build natively.
+
+**Can it keep my alts from going AFK?** Yes. A new macro starts out as an
+anti-AFK one, pressing space every one to four minutes, and it plays into
+every client you pick with their windows hidden.
+
+**Which distros?** Any x86_64 distro: there are `.deb`, `.rpm`, Arch,
+Flatpak, AppImage and Nix packages. ARM isn't supported.
 
 ## Documentation
 

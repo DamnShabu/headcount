@@ -29,8 +29,46 @@
     </p>
   </description>
   <launchable type="desktop-id">io.github.mujo.RobloxManager.desktop</launchable>
+  <provides>
+    <binary>headcount</binary>
+  </provides>
+  <categories>
+    <category>Game</category>
+    <category>Utility</category>
+  </categories>
+  <keywords>
+    <keyword>Roblox</keyword>
+    <keyword>account manager</keyword>
+    <keyword>multi-account</keyword>
+    <keyword>multi-instance</keyword>
+    <keyword>alts</keyword>
+    <keyword>launcher</keyword>
+    <keyword>macro</keyword>
+    <keyword>anti-AFK</keyword>
+  </keywords>
   <url type="homepage">https://github.com/DamnShabu/headcount</url>
   <url type="bugtracker">https://github.com/DamnShabu/headcount/issues</url>
+  <url type="help">https://github.com/DamnShabu/headcount/blob/main/docs/guide.md</url>
+  <url type="vcs-browser">https://github.com/DamnShabu/headcount</url>
+  <url type="contribute">https://github.com/DamnShabu/headcount/blob/main/CONTRIBUTING.md</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>The macro editor: a key-and-click macro repeated for 25 rounds</caption>
+      <image>https://raw.githubusercontent.com/DamnShabu/headcount/main/docs/screenshots/macro-editor.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Account settings, with a macro picked for the account</caption>
+      <image>https://raw.githubusercontent.com/DamnShabu/headcount/main/docs/screenshots/account-settings.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Joining from the Play button on roblox.com with several accounts</caption>
+      <image>https://raw.githubusercontent.com/DamnShabu/headcount/main/docs/screenshots/join-link.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Adding an account with Roblox Quick Login</caption>
+      <image>https://raw.githubusercontent.com/DamnShabu/headcount/main/docs/screenshots/add-account.png</image>
+    </screenshot>
+  </screenshots>
   <branding>
     <color type="primary" scheme_preference="light">#f3d9a8</color>
     <color type="primary" scheme_preference="dark">#5a4424</color>
