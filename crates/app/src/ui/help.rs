@@ -1,5 +1,5 @@
 //! Help in the inspector: every keyboard shortcut, filtered as you type,
-//! and about Roblox Manager.
+//! and about Headcount.
 
 use std::rc::Rc;
 
@@ -161,7 +161,7 @@ fn about_page() -> gtk::Box {
     who.append(&logo);
     let text = gtk::Box::new(Orientation::Vertical, 2);
     text.set_valign(Align::Center);
-    text.append(&lbl("Roblox Manager", "t-h4"));
+    text.append(&lbl("Headcount", "t-h4"));
     text.append(&lbl(&format!("Version {}", env!("CARGO_PKG_VERSION")), "t-caption muted"));
     who.append(&text);
     top.append(&who);
@@ -176,8 +176,8 @@ fn about_page() -> gtk::Box {
     );
     let links = gtk::Box::new(Orientation::Horizontal, 8);
     for (text, uri) in [
-        ("Website", "https://github.com/DamnShabu/roblox-manager"),
-        ("Report a problem", "https://github.com/DamnShabu/roblox-manager/issues"),
+        ("Website", "https://github.com/DamnShabu/headcount"),
+        ("Report a problem", "https://github.com/DamnShabu/headcount/issues"),
     ] {
         let b = ds::Button::with_icons(text, Variant::Secondary, true, None, Some("external"));
         b.button.set_tooltip_text(Some(uri));
@@ -194,7 +194,7 @@ fn about_page() -> gtk::Box {
     }
     top.append(&links);
     let legal = ds::sec("Licences", None);
-    legal.append(&lbl("Roblox Manager is under the MIT licence.", "t-body-sm").wrapped());
+    legal.append(&lbl("Headcount is under the MIT licence.", "t-body-sm").wrapped());
     legal.append(
         &lbl("Each client runs in Stacked, a fork of Cordial, under the GPL 3.0.", "t-body-sm")
             .wrapped(),

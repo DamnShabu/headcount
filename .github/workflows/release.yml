@@ -2,12 +2,15 @@
 # this checks the code, builds every package, and publishes them as the
 # GitHub release the app's Update reads (crates/core/src/update).
 #
-#   roblox-manager-VERSION-x86_64.AppImage     any distro
-#   roblox-manager_VERSION_amd64.deb            Debian, Ubuntu, Mint, Pop!_OS
-#   roblox-manager-VERSION-1.x86_64.rpm         Fedora, openSUSE
-#   roblox-manager-VERSION-1-x86_64.pkg.tar.zst Arch, Manjaro, EndeavourOS
-#   roblox-manager-VERSION-x86_64.flatpak       Flatpak, on any distro
-#   SHA256SUMS                                  what Update checks each against
+#   headcount-VERSION-x86_64.AppImage      any distro
+#   headcount_VERSION_amd64.deb             Debian, Ubuntu, Mint, Pop!_OS
+#   headcount-VERSION-1.x86_64.rpm          Fedora, openSUSE
+#   headcount-VERSION-1-x86_64.pkg.tar.zst  Arch, Manjaro, EndeavourOS
+#   headcount-VERSION-x86_64.flatpak        Flatpak, on any distro
+#   SHA256SUMS                              what Update checks each against
+#
+# Each also under its name from before the rename (roblox-manager-...): the
+# name copies of 0.13 and older look for when they update themselves.
 #
 # A tag with a pre-release part (v0.3.0-rc.1) is published as a pre-release,
 # which Update never offers.
@@ -55,11 +58,11 @@ jobs:
       - run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
       - name: AppImage
         run: |
-          nix build .#roblox-manager-appimage --print-build-logs
+          nix build .#headcount-appimage --print-build-logs
           mkdir -p dist
-          install -m755 result "dist/roblox-manager-${VERSION}-x86_64.AppImage"
+          install -m755 result "dist/headcount-${VERSION}-x86_64.AppImage"
       - name: deb, rpm and Arch packages
-        run: packaging/linux/build.sh "dist/roblox-manager-${VERSION}-x86_64.AppImage" "$VERSION" dist
+        run: packaging/linux/build.sh "dist/headcount-${VERSION}-x86_64.AppImage" "$VERSION" dist
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: linux
@@ -80,13 +83,13 @@ jobs:
       - uses: flatpak/flatpak-github-actions/flatpak-builder@79327416609af08178ad73b352877e51450790b3 # v6.8
         with:
           manifest-path: packaging/flatpak/io.github.mujo.RobloxManager.yml
-          bundle: roblox-manager-${{ env.VERSION }}-x86_64.flatpak
+          bundle: headcount-${{ env.VERSION }}-x86_64.flatpak
           cache-key: flatpak-builder-${{ github.sha }}
           upload-artifact: false
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: flatpak
-          path: roblox-manager-${{ env.VERSION }}-x86_64.flatpak
+          path: headcount-${{ env.VERSION }}-x86_64.flatpak
           if-no-files-found: error
 
   publish:
@@ -95,7 +98,7 @@ jobs:
     permissions:
       contents: write
       # Build provenance for every asset: `gh attestation verify FILE
-      # -R DamnShabu/roblox-manager` ties a download to this workflow run.
+      # -R DamnShabu/headcount` ties a download to this workflow run.
       id-token: write
       attestations: write
     steps:
@@ -103,6 +106,9 @@ jobs:
         with:
           path: dist
           merge-multiple: true
+      - name: The names from before the rename
+        working-directory: dist
+        run: for f in headcount[-_]*; do cp -- "$f" "roblox-manager${f#headcount}"; done
       - name: SHA256SUMS
         working-directory: dist
         run: sha256sum -- * > SHA256SUMS
@@ -118,5 +124,5 @@ jobs:
           if [[ "$version" == *-* ]]; then pre=(--prerelease); fi
           gh release create "$GITHUB_REF_NAME" dist/* \
             --repo "$GITHUB_REPOSITORY" \
-            --title "Roblox Manager $version" \
+            --title "Headcount $version" \
             --generate-notes "${pre[@]}"

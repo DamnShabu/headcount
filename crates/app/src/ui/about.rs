@@ -1,16 +1,16 @@
-//! About Roblox Manager.
+//! About Headcount.
 
 use adw::prelude::*;
 
 /// The about dialog, over `parent` when there is one.
 pub fn show(parent: Option<&gtk::Window>) {
     let about = adw::AboutDialog::builder()
-        .application_name("Roblox Manager")
+        .application_name("Headcount")
         .application_icon(crate::APP_ID)
         .developer_name("mujō")
         .version(env!("CARGO_PKG_VERSION"))
-        .website("https://github.com/DamnShabu/roblox-manager")
-        .issue_url("https://github.com/DamnShabu/roblox-manager/issues")
+        .website("https://github.com/DamnShabu/headcount")
+        .issue_url("https://github.com/DamnShabu/headcount/issues")
         .license_type(gtk::License::MitX11)
         .comments(
             "Several Roblox accounts, launched into one server.\n\n\

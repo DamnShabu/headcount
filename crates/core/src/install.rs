@@ -16,7 +16,7 @@ pub enum Install {
     /// Runs from this AppImage file, which may move.
     AppImage(PathBuf),
     /// A release's distribution package: the AppImage's contents under
-    /// `/opt/roblox-manager`, with an entry of its own.
+    /// `/opt/headcount`, with an entry of its own.
     Package(PackageFormat),
     /// Anything else (Nix, a hand-built binary): this binary, with or
     /// without an installed entry.
@@ -50,7 +50,7 @@ impl Install {
         Self::from_env(
             Path::new("/.flatpak-info").exists(),
             |k| std::env::var_os(k),
-            std::env::current_exe().unwrap_or_else(|_| "roblox-manager".into()),
+            std::env::current_exe().unwrap_or_else(|_| "headcount".into()),
         )
     }
 

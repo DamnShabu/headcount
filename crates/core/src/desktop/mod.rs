@@ -138,7 +138,7 @@ fn entry(exec: &Path) -> String {
     format!(
         "[Desktop Entry]\n\
          Type=Application\n\
-         Name=Roblox Manager\n\
+         Name=Headcount\n\
          GenericName=Roblox Account Manager\n\
          Comment=Launch several Roblox accounts into the same server\n\
          Icon=io.github.mujo.RobloxManager\n\

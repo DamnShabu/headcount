@@ -1,8 +1,8 @@
-"""Roblox Manager's advanced macros.
+"""Headcount's advanced macros.
 
 A script in the advanced macros folder runs with this module already
 imported, once for every account it is started on. Everything here goes
-through the manager: keys and clicks reach the account's macro-ready window
+through Headcount: keys and clicks reach the account's macro-ready window
 the way a plain macro's do, and what the script sees of that window is a copy
 of its frame the compositor hands over. Nothing reaches into the client.
 
@@ -15,7 +15,7 @@ of its frame the compositor hands over. Nothing reaches into the client.
         rb.tap("e")
         rb.wait(0.5)
 
-print() goes to the manager's activity log. Stop in the manager ends the
+print() goes to Headcount's activity log. Stop in Headcount ends the
 script wherever it is; every key it left down is let go of.
 """
 
@@ -32,7 +32,7 @@ __all__ = [
     "find", "find_center", "wait_for", "pixel", "color_is", "frame", "images", "running",
 ]
 
-# The manager talks over this process's stdin and stdout. They are taken
+# Headcount talks over this process's stdin and stdout. They are taken
 # here, before the script runs, and fd 1 becomes stderr: a print(), or a
 # program the script starts, can never write into the conversation.
 _requests = os.fdopen(os.dup(1), "wb", buffering=0)
@@ -42,14 +42,14 @@ _null = os.open(os.devnull, os.O_RDONLY)
 os.dup2(_null, 0)
 os.close(_null)
 
-#: The account this run plays into: its name in the manager, and its Roblox
+#: The account this run plays into: its name in Headcount, and its Roblox
 #: user id.
 account = os.environ.get("RBXMGR_ACCOUNT", "")
 user_id = int(os.environ.get("RBXMGR_USER_ID", "0") or 0)
 
 
 class MacroError(Exception):
-    """The manager refused a request: a key it does not know, an image that
+    """Headcount refused a request: a key it does not know, an image that
     was never picked, a window it cannot see."""
 
 
@@ -58,7 +58,7 @@ def _call(op, **args):
     _requests.write((json.dumps(args) + "\n").encode())
     line = _replies.readline()
     if not line:
-        # The manager stopped this run.
+        # Headcount stopped this run.
         raise SystemExit(0)
     reply = json.loads(line)
     if "error" in reply:

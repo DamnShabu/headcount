@@ -153,7 +153,7 @@ impl LinkPopup {
             vbox!(
                 0,
                 "",
-                lbl("Roblox Manager", "heading"),
+                lbl("Headcount", "heading"),
                 lbl("Link opened from browser", "caption dimmed")
             )
             .centered()

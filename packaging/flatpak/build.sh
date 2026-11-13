@@ -2,7 +2,7 @@
 # Build the Flatpak and install it for this user.
 #
 #   packaging/flatpak/build.sh            build and install
-#   packaging/flatpak/build.sh --bundle   also write roblox-manager.flatpak,
+#   packaging/flatpak/build.sh --bundle   also write headcount.flatpak,
 #                                         a single file to install elsewhere
 #
 # Needs flatpak, flatpak-builder and appstreamcli (flatpak-builder runs it on
@@ -47,6 +47,6 @@ flatpak-builder --user --install --force-clean \
     target/flatpak-build "$manifest"
 
 if [[ "${1:-}" == --bundle ]]; then
-    flatpak build-bundle target/flatpak-repo roblox-manager.flatpak "$app_id"
-    echo "wrote $root/roblox-manager.flatpak"
+    flatpak build-bundle target/flatpak-repo headcount.flatpak "$app_id"
+    echo "wrote $root/headcount.flatpak"
 fi

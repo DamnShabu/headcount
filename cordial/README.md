@@ -1,6 +1,6 @@
 # Cordial
 
-The runtime the manager's clients run in: Stacked
+The runtime Headcount's clients run in: Stacked
 ([DamnShabu/stacked](https://github.com/DamnShabu/stacked)), mujō's fork of
 Cordial. `source.json` pins which commit is built, plus the patches beside
 it -- today only `0002`, which adds `cordial-fetch` (the fork has
@@ -9,13 +9,13 @@ it -- today only `0002`, which adds `cordial-fetch` (the fork has
 (`packaging/flatpak/io.github.mujo.RobloxManager.yml`) builds the same, and
 `crates/core/tests/cordial_pin.rs` fails `cargo test` when the two disagree.
 
-## Updating without a new manager build
+## Updating without a new Headcount build
 
 **Update** (the header bar's button, or the main menu's **Update All**) installs the fork's newest GitHub release
 (`crates/core/src/cordial/stacked/`): it downloads
 `Stacked-<version>-<arch>.AppImage`, reads the SquashFS image out of it
 (without running it: NixOS sends every AppImage through appimage-run, which
-a sandboxed manager cannot reach) into
+a sandboxed Headcount cannot reach) into
 `~/.local/share/rbxmgr/stacked/<version>`, and writes a `bin/cordial-run`
 script there that starts the unpacked engine with the libraries the AppImage
 bundles (what its AppRun would set). No FUSE, no root, and it works inside the
@@ -29,7 +29,7 @@ run that, so there it builds the fork's flake with Nix instead
 kept for clients still running on it. `cordial-fetch` stays the pinned one.
 To go back to the pinned engine, delete `stacked/current`.
 
-## What the manager relies on
+## What Headcount relies on
 
 Any source this points at must keep these, or `crates/core/src/cordial`
 changes with it. Each item names the code that depends on it.
@@ -45,7 +45,7 @@ changes with it. Each item names the code that depends on it.
 - **Hiding a window** (`profiles.rs`, `set_hidden` and `window`): while it
   runs, a client keeps `<profile>/window-state` saying `shown` or `hidden`;
   SIGUSR1 hides its window and SIGUSR2 shows it again, with the game still
-  running. The manager signals only a client with that file: an engine
+  running. Headcount signals only a client with that file: an engine
   without it dies on SIGUSR1. Stacked's ADR-046.
 - **`cordial-fetch [--newest | --status]`** (`build.rs`): the last stdout
   line is `{"version", "apk", "engine"}`, the `--apk` and `--lib-dir` above;
@@ -80,4 +80,4 @@ changes with it. Each item names the code that depends on it.
    `packaging/flatpak/build.sh`. Then launch one account and play a macro
    in a macro-ready window, and record a few seconds there (Record in a
    macro's editor, F8 twice in the window): the checks above cannot see the
-   engine, which runs behind the manager's relay.
+   engine, which runs behind Headcount's relay.

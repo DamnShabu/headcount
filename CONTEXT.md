@@ -1,4 +1,4 @@
-# roblox-manager: domain glossary
+# Headcount: domain glossary
 
 The words the code and its docs use. When a name here fits, use it; don't
 drift to synonyms.
@@ -37,7 +37,7 @@ or a friend's server.
 
 **Cordial** -- the Roblox runtime this repo ships a fork of, Stacked
 (`cordial-run`, `cordial-fetch`). **Cordial profile** -- one per account, named
-`rbxmgr-<user id>`; the manager seeds its session before every launch.
+`rbxmgr-<user id>`; Headcount seeds its session before every launch.
 **Build** -- the installed Roblox engine and APK the clients run.
 
 **Launch** -- signing each account's session in with Roblox, seeding its
@@ -49,7 +49,7 @@ FPS, lowest graphics, niced, throttled), Medium (60 FPS, reduced graphics),
 High (the monitor's refresh rate, the game's own graphics) or Max (the
 monitor's refresh rate, top graphics). A **low-power client** is a Low one.
 
-**Hidden window** -- a client's window unmapped at the manager's request
+**Hidden window** -- a client's window unmapped at Headcount's request
 (SIGUSR1; SIGUSR2 shows it), the game still running behind it at a capped
 frame rate. A macro-ready client's is its cage's window, which its **window
 relay** unmaps instead, leaving the client's own window up inside the cage

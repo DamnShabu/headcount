@@ -1,4 +1,4 @@
-//! The Roblox Manager window: one handle every widget keeps, the state it
+//! The Headcount window: one handle every widget keeps, the state it
 //! draws from, and the redraws.
 
 mod accounts;
@@ -93,7 +93,7 @@ impl Window {
             };
             let win = adw::ApplicationWindow::builder()
                 .application(app)
-                .title("Roblox Manager")
+                .title("Headcount")
                 .default_width(saved.width)
                 .default_height(saved.height)
                 .maximized(saved.maximized)
@@ -507,7 +507,7 @@ impl Window {
             style: self.style(),
         };
         if let Err(e) = state.save(&self.services().paths.window_state()) {
-            eprintln!("roblox-manager: could not remember the window's size: {e}");
+            eprintln!("headcount: could not remember the window's size: {e}");
         }
     }
 }

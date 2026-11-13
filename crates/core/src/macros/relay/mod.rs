@@ -1,7 +1,7 @@
 //! The relay: a macro-ready client's display, passed through on its way to
 //! the client, so a recording can hear what its window receives.
 //!
-//! Cage runs `roblox-manager --relay DISPLAY_FILE -- cordial-run ...`. The
+//! Cage runs `headcount --relay DISPLAY_FILE -- cordial-run ...`. The
 //! relay gives the client a socket of its own beside the display file and
 //! links every connection on it through to cage; recorders arm it on its
 //! report socket, also beside the display file. It ends with its client.

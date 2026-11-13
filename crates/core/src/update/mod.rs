@@ -53,10 +53,10 @@ impl Available {
         self.app.is_some() || self.stacked.is_some()
     }
 
-    /// "Roblox Manager 0.3.0 and Stacked 0.21.0", for a tooltip.
+    /// "Headcount 0.3.0 and Stacked 0.21.0", for a tooltip.
     pub fn describe(&self) -> String {
         let parts: Vec<String> = [
-            self.app.as_ref().map(|v| format!("Roblox Manager {v}")),
+            self.app.as_ref().map(|v| format!("Headcount {v}")),
             self.stacked.as_ref().map(|v| format!("Stacked {v}")),
         ]
         .into_iter()
@@ -78,7 +78,7 @@ pub fn check(app: &dyn AppReleases, stacked: &dyn Releases, paths: &Paths) -> Ch
     let mut checked = Checked::default();
     match app::newer(app) {
         Ok(release) => checked.available.app = release.map(|r| r.version),
-        Err(e) => checked.problems.push(format!("Could not check for a new Roblox Manager: {e}")),
+        Err(e) => checked.problems.push(format!("Could not check for a new Headcount: {e}")),
     }
     match stacked::newer(stacked, paths) {
         Ok(version) => checked.available.stacked = version,
@@ -139,7 +139,7 @@ pub fn update_all(src: &Sources, log: &dyn Fn(String)) -> Report {
                 Err(e) => AppOutcome::Failed(e.to_string()),
             }
         }
-        Err(e) => AppOutcome::Failed(format!("could not check for a new Roblox Manager: {e}")),
+        Err(e) => AppOutcome::Failed(format!("could not check for a new Headcount: {e}")),
     };
     Report { roblox, stacked, app }
 }
@@ -213,7 +213,7 @@ mod tests {
     #[test]
     fn what_is_out_reads_as_one_line() {
         let both = Available { app: Some("0.3.0".into()), stacked: Some("0.21.0".into()) };
-        assert_eq!(both.describe(), "Roblox Manager 0.3.0 and Stacked 0.21.0");
+        assert_eq!(both.describe(), "Headcount 0.3.0 and Stacked 0.21.0");
         assert!(both.any());
         assert!(!Available::default().any());
     }
@@ -227,7 +227,7 @@ mod tests {
         start_installed(&runner, &install, &paths).unwrap();
         let spawned = runner.spawned();
         assert_eq!(spawned.len(), 1);
-        assert_eq!(spawned[0].0, ["/usr/bin/roblox-manager", RESTARTED]);
+        assert_eq!(spawned[0].0, ["/usr/bin/headcount", RESTARTED]);
     }
 
     #[test]

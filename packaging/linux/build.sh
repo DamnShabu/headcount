@@ -4,7 +4,7 @@
 #
 #   packaging/linux/build.sh APPIMAGE VERSION OUTDIR
 #
-# Each holds the same bundle, unpacked under /opt/roblox-manager and started
+# Each holds the same bundle, unpacked under /opt/headcount and started
 # through its own AppRun, so one build runs on every distro whatever its
 # GTK. What a package adds over the AppImage: the package manager knows it,
 # the desktop finds its entry, icon and link handler without being asked,
@@ -52,15 +52,15 @@ mkdir -p "$out"
 # to update itself with (crates/core/src/install.rs).
 package() {
     local format=$1 packager=$2 target=$3
-    cat > "$work/roblox-manager-$format" <<LAUNCHER
+    cat > "$work/headcount-$format" <<LAUNCHER
 #!/bin/sh
-# Roblox Manager, from its $format package.
+# Headcount, from its $format package.
 RBXMGR_PACKAGE=$format
 export RBXMGR_PACKAGE
-exec /opt/roblox-manager/AppRun "\$@"
+exec /opt/headcount/AppRun "\$@"
 LAUNCHER
     cat > "$work/nfpm-$format.yaml" <<CONFIG
-name: roblox-manager
+name: headcount
 version: "$VERSION"
 release: 1
 arch: amd64
@@ -72,23 +72,37 @@ description: |
   Signs in Roblox accounts with Quick Login, launches them together behind a
   leader, and plays input macros into them. Bundles its own GTK and the
   Cordial runtime the clients run in.
-homepage: https://github.com/DamnShabu/roblox-manager
+homepage: https://github.com/DamnShabu/headcount
 license: MIT AND GPL-3.0-or-later
+# Headcount was called Roblox Manager up to 0.13. This package takes the old
+# one's place when an old copy updates itself, and keeps its command: the old
+# copy starts /usr/bin/roblox-manager again once it has updated.
+provides: [roblox-manager]
+replaces: [roblox-manager]
+overrides:
+  # On rpm, replaces is Obsoletes, which is all a rename takes there.
+  deb:
+    conflicts: [roblox-manager]
+  archlinux:
+    conflicts: [roblox-manager]
 contents:
   - src: $work/bundle/
-    dst: /opt/roblox-manager
+    dst: /opt/headcount
     type: tree
-  - src: $work/roblox-manager-$format
-    dst: /usr/bin/roblox-manager
+  - src: $work/headcount-$format
+    dst: /usr/bin/headcount
     file_info: {mode: 0755}
+  - src: /usr/bin/headcount
+    dst: /usr/bin/roblox-manager
+    type: symlink
   - src: $root/packaging/flatpak/io.github.mujo.RobloxManager.desktop
     dst: /usr/share/applications/io.github.mujo.RobloxManager.desktop
   - src: $root/packaging/flatpak/io.github.mujo.RobloxManager.metainfo.xml
     dst: /usr/share/metainfo/io.github.mujo.RobloxManager.metainfo.xml
-  - src: $root/packaging/icons/roblox-manager.svg
+  - src: $root/packaging/icons/headcount.svg
     dst: /usr/share/icons/hicolor/scalable/apps/io.github.mujo.RobloxManager.svg
   - src: $here/apparmor-profile
-    dst: /usr/share/roblox-manager/apparmor-profile
+    dst: /usr/share/headcount/apparmor-profile
     packager: deb
 deb:
   compression: zstd
@@ -101,6 +115,6 @@ CONFIG
     nfpm package --config "$work/nfpm-$format.yaml" --packager "$packager" --target "$out/$target"
 }
 
-package deb deb "roblox-manager_${VERSION}_amd64.deb"
-package rpm rpm "roblox-manager-${VERSION}-1.x86_64.rpm"
-package arch archlinux "roblox-manager-${VERSION}-1-x86_64.pkg.tar.zst"
+package deb deb "headcount_${VERSION}_amd64.deb"
+package rpm rpm "headcount-${VERSION}-1.x86_64.rpm"
+package arch archlinux "headcount-${VERSION}-1-x86_64.pkg.tar.zst"

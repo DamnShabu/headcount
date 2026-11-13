@@ -1,4 +1,4 @@
-//! One Update for everything: the Roblox build, Stacked and Roblox Manager
+//! One Update for everything: the Roblox build, Stacked and Headcount
 //! itself. A check at start and every few hours shows the header's Update
 //! button when the app or Stacked has a newer release; the main menu's
 //! Update All is always there (Roblox's own build can only be checked by
@@ -86,8 +86,7 @@ impl Window {
         self.state_mut().updating = true;
         self.set_action_enabled("update", false);
         let banner = &self.0.ui.banner;
-        banner
-            .set_title("Updating Roblox, Stacked and Roblox Manager — this can take a few minutes");
+        banner.set_title("Updating Roblox, Stacked and Headcount — this can take a few minutes");
         banner.set_button_label(None);
         banner.set_revealed(true);
         let s = self.services();
@@ -150,21 +149,21 @@ impl Window {
         }
         match report.app {
             AppOutcome::Current => {
-                self.log(&format!("Roblox Manager {} is up to date", update::RUNNING));
+                self.log(&format!("Headcount {} is up to date", update::RUNNING));
             }
             AppOutcome::Installed(version) => {
-                self.log(&format!("Roblox Manager {version} is installed; restart to use it"));
+                self.log(&format!("Headcount {version} is installed; restart to use it"));
                 self.state_mut().restart_to = Some(version);
             }
             AppOutcome::Failed(e) => {
-                self.log(&format!("Could not update Roblox Manager: {e}"));
-                failed.push(("Roblox Manager", e));
+                self.log(&format!("Could not update Headcount: {e}"));
+                failed.push(("Headcount", e));
             }
         }
         let restart_to = self.state().restart_to.clone();
         if let Some(version) = &restart_to {
             let banner = &self.0.ui.banner;
-            banner.set_title(&format!("Roblox Manager {version} is installed"));
+            banner.set_title(&format!("Headcount {version} is installed"));
             banner.set_button_label(Some("_Restart"));
             banner.set_action_name(Some("win.restart"));
             banner.set_revealed(true);
@@ -179,7 +178,7 @@ impl Window {
                         "Clients launched from now on run the newest Roblox and Stacked.",
                     );
                 } else {
-                    self.notify(done, "Restart Roblox Manager to run its new version.");
+                    self.notify(done, "Restart Headcount to run its new version.");
                 }
             }
             [(what, why)] => {
@@ -207,9 +206,9 @@ impl Window {
         match update::start_installed(&*s.runner, &s.install, &s.paths) {
             Ok(()) => self.gtk_window().close(),
             Err(e) => {
-                self.log(&format!("Could not restart Roblox Manager: {e}"));
+                self.log(&format!("Could not restart Headcount: {e}"));
                 self.toast_with(
-                    "Could not restart; open Roblox Manager again",
+                    "Could not restart; open Headcount again",
                     "Details",
                     activity::open_log,
                 );
@@ -218,7 +217,7 @@ impl Window {
     }
 }
 
-/// "Roblox Manager 0.3.0 is", "Roblox Manager 0.3.0 and Stacked 0.21.0 are".
+/// "Headcount 0.3.0 is", "Headcount 0.3.0 and Stacked 0.21.0 are".
 fn out(available: &update::Available) -> String {
     let verb = if available.app.is_some() && available.stacked.is_some() { "are" } else { "is" };
     format!("{} {verb}", available.describe())

@@ -1,6 +1,6 @@
 [package]
 name = "rbxmgr-core"
-description = "Everything roblox-manager does except drawing: accounts, keyring, Roblox web API, Cordial, launching, macros."
+description = "Everything Headcount does except drawing: accounts, keyring, Roblox web API, Cordial, launching, macros."
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

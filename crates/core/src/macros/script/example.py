@@ -1,11 +1,11 @@
 # An example to copy from: walks forward, jumps, and clicks a picked image when it shows.
 #
 # Every .py file in this folder is an advanced macro, listed under Scripts
-# in Roblox Manager's sidebar. Select accounts and press its ▶: it runs
+# in Headcount's sidebar. Select accounts and press its ▶: it runs
 # once for each of them, into that account's macro-ready window. Stop ends it.
 #
 # The rbxmgr module is how a script plays: keys, clicks and looks at the
-# window all go through the manager, never into the Roblox client.
+# window all go through Headcount, never into the Roblox client.
 #
 #   tap("e"), tap("ctrl+w"), hold("w", secs=2), key_down/key_up("shift")
 #   type_text("hello"), click(400, 300), click(button="mouse2")
@@ -17,7 +17,7 @@
 #   frame() -> a copy of the window, frame().save("shot.png")
 #   images(), running(), account, user_id
 #
-# print() shows up in the manager's activity log.
+# print() shows up in Headcount's activity log.
 
 import rbxmgr as rb
 

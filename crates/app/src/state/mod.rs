@@ -317,7 +317,7 @@ impl AppState {
         let (last, rest) = cut.split_last()?;
         let what =
             if rest.is_empty() { last.clone() } else { format!("{} and {last}", rest.join(", ")) };
-        Some(format!("Closing Roblox Manager stops {what}. Clients already running keep running."))
+        Some(format!("Closing Headcount stops {what}. Clients already running keep running."))
     }
 
     /// The top bar's recent targets: the games picked this run, latest

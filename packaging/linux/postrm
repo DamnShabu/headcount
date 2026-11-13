@@ -5,10 +5,10 @@ set -e
 case "${1:-}" in
     upgrade|1) exit 0 ;;
 esac
-if [ -f /etc/apparmor.d/roblox-manager ] && [ ! -e /opt/roblox-manager/AppRun ]; then
+if [ -f /etc/apparmor.d/headcount ] && [ ! -e /opt/headcount/AppRun ]; then
     if command -v apparmor_parser >/dev/null 2>&1; then
-        apparmor_parser -R /etc/apparmor.d/roblox-manager || true
+        apparmor_parser -R /etc/apparmor.d/headcount || true
     fi
-    rm -f /etc/apparmor.d/roblox-manager
+    rm -f /etc/apparmor.d/headcount
 fi
 exit 0
