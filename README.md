@@ -98,9 +98,9 @@ the newest Roblox build too.
 </tr>
 </table>
 
-Roblox itself runs in Stacked, a fork of [Cordial](cordial/README.md), the
-runtime for Roblox's official Android build. Headcount installs it and keeps
-it up to date.
+Roblox itself runs in [Stacked](https://github.com/DamnShabu/stacked), a fork
+of Cordial, the runtime for Roblox's official Android build. Headcount installs
+it and keeps it up to date ([how](cordial/README.md)).
 
 ## Install
 
