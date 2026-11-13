@@ -24,6 +24,10 @@
   <a href="docs/advanced-macros.md"><b>Python macros</b></a>
 </p>
 
+<p align="center">
+  <img src="docs/screenshots/hero-dark.png" width="100%" alt="The Headcount window: five accounts, a GPO alts group of two set to Grand Piece Online, a Side accounts group, and the Anti-AFK, Haki farm and Water plants macros in the sidebar">
+</p>
+
 > [!WARNING]
 > Roblox's terms don't allow running more than one client at once, and people
 > have reported anti-cheat flags for it. Installing the app does nothing on its
