@@ -8,5 +8,5 @@ Exec=headcount %u
 Terminal=false
 StartupWMClass=io.github.mujo.RobloxManager
 Categories=Game;
-Keywords=roblox;cordial;account;alt;multi;instance;
+Keywords=roblox;cordial;stacked;account;accounts;manager;alt;alts;multi;instance;multi-instance;launcher;macro;anti-afk;
 MimeType=x-scheme-handler/roblox-player;x-scheme-handler/roblox;
