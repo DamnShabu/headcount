@@ -1,5 +1,5 @@
 {
-  description = "mujō Roblox manager: several Roblox accounts, launched into one server";
+  description = "Headcount: several Roblox accounts, launched into one server";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -19,13 +19,15 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     packages.${system} = {
-      default = self.packages.${system}.roblox-manager;
-      roblox-manager = import ./package.nix {inherit pkgs;};
+      default = self.packages.${system}.headcount;
+      headcount = import ./package.nix {inherit pkgs;};
+      # Its name before the rename, for configs that still ask for it.
+      roblox-manager = self.packages.${system}.headcount;
       cordial-mujo = import ./cordial/package.nix {inherit pkgs;};
-      roblox-manager-appimage = import ./appimage.nix {
+      headcount-appimage = import ./appimage.nix {
         inherit pkgs nix-appimage;
         inherit (nixpkgs) lib;
-        inherit (self.packages.${system}) roblox-manager;
+        inherit (self.packages.${system}) headcount;
       };
       flatpak-cargo-generator = import ./packaging/flatpak/cargo-generator.nix {inherit pkgs;};
     };

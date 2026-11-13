@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Check [Troubleshooting](https://github.com/DamnShabu/roblox-manager/blob/main/docs/guide.md#troubleshooting) first. It may already have the fix.
+        Check [Troubleshooting](https://github.com/DamnShabu/headcount/blob/main/docs/guide.md#troubleshooting) first. It may already have the fix.
   - type: textarea
     id: what
     attributes:
@@ -24,7 +24,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: Manager version
+      label: Headcount version
       description: The main menu's About shows it.
       placeholder: "0.12.0"
     validations:

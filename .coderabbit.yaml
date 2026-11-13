@@ -42,7 +42,7 @@ reviews:
         `#[serde(default)]` / `alias`, and any change to keyring attribute names.
     - path: "crates/core/src/{update,cordial}/**"
       instructions: |
-        This code downloads programs and runs them. The manager's own update is checked against
+        This code downloads programs and runs them. Headcount's own update is checked against
         the release's SHA256SUMS before it is used; keep it that way, and flag any new download
         that is run or installed without a checksum check. Drafts and pre-releases are never
         offered.

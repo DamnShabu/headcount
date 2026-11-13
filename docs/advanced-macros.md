@@ -9,12 +9,12 @@ sit beside them and be imported.
 Tick accounts and press ▶ beside a script: it runs once for each of them, as a
 separate `python3` process, into that account's macro-ready window. Press it
 again to stop every run. Stop ends a script wherever it is, a `time.sleep`
-included (it gets SIGTERM, then SIGKILL a second later), and the manager lets
+included (it gets SIGTERM, then SIGKILL a second later), and Headcount lets
 go of every key the script left down.
 
 Scripts run from their own folder with the system's `python3`, so anything
 you installed for it (numpy, Pillow) can be imported. Only keys, clicks and
-copies of the window go through the manager. A script can't reach into the
+copies of the window go through Headcount. A script can't reach into the
 Roblox client.
 
 ## The `rbxmgr` module
@@ -52,7 +52,7 @@ and it is saved as `image1`, `image2` and so on. `find(..., area=(x, y, w, h))`
 looks only in that rectangle, and `least=0.95` asks for more of the image's
 pixels to match (0.9 by default).
 
-A request the manager can't do, such as a key it doesn't know, an image that
+A request Headcount can't do, such as a key it doesn't know, an image that
 was never picked, or a window it can't see yet, raises `rbxmgr.MacroError`.
 Catch it to carry on. An uncaught exception ends the run, and its last line
 shows as the reason.
@@ -60,7 +60,7 @@ shows as the reason.
 `print()` goes to the activity log, and the latest line shows on the
 account's row while the script runs.
 
-## How it talks to the manager
+## How it talks to Headcount
 
 `rbxmgr` sends one JSON request per line on the process's stdout and reads one
 reply per line on its stdin. Before your script runs it moves `print()` and

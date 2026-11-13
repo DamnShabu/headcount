@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=Roblox Manager
+Name=Headcount
 GenericName=Roblox Account Manager
 Comment=Launch several Roblox accounts into the same server
 Icon=io.github.mujo.RobloxManager
-Exec=roblox-manager %u
+Exec=headcount %u
 Terminal=false
 StartupWMClass=io.github.mujo.RobloxManager
 Categories=Game;

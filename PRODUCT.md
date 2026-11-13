@@ -99,11 +99,13 @@ truthfully claim:
   clicks the common actions take. The craft bar is Roblox Account Manager
   (every action one click from the account list) and Mission Center / GNOME
   System Monitor (live state and resource use at a glance, native GTK4).
-- **Name: Stacked.** The product is being renamed from "Roblox Manager" to
-  **Stacked**, one name for the app and the runtime it ships. The rename is
-  decided but not yet carried through the code, packaging or README, which
-  still say Roblox Manager. New surfaces use Stacked.
-- Mark: `packaging/icons/roblox-manager.svg` is the app's mark today.
+- **Name: Headcount.** The app is Headcount; it was Roblox Manager up to
+  0.13. Stacked stays the name of the runtime it ships, the fork of Cordial.
+  Ids nobody sees keep the old name, so earlier installs carry over: the app
+  id, `~/.local/share/rbxmgr`, the keyring attributes and the `rbxmgr`
+  Python module.
+- Mark: `packaging/icons/headcount.svg`, four block heads on a dark tile, one
+  in the accent red.
 - Voice: plain, direct, second person, short sentences; says what a control
   does and what happens next, in the product's own words (account, session,
   launch, macro-ready window). See README.md and CONTEXT.md for terminology;

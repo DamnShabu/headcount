@@ -20,7 +20,7 @@ impl TopBar {
     pub fn build(w: &WeakWindow) -> Self {
         let bar = gtk::Box::new(Orientation::Horizontal, 12).css("mn-top");
         bar.append(&gtk::WindowControls::new(gtk::PackType::Start));
-        bar.append(&lbl("Stacked", "mn-brand"));
+        bar.append(&lbl("Headcount", "mn-brand"));
         let status = lbl("All idle", "mn-dim").ellipsize();
         bar.append(&status);
 

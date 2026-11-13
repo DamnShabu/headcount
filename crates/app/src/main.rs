@@ -1,4 +1,4 @@
-//! roblox-manager: several Roblox accounts, launched into one server.
+//! Headcount: several Roblox accounts, launched into one server.
 
 mod crash;
 mod services;
@@ -87,7 +87,7 @@ fn main() -> glib::ExitCode {
     if let Some(at) = args.iter().position(|a| a == update::RESTARTED) {
         args.remove(at);
         if !update::wait_for_predecessor(Duration::from_secs(20)) {
-            eprintln!("roblox-manager: the previous copy was still running; starting anyway");
+            eprintln!("headcount: the previous copy was still running; starting anyway");
         }
     }
     let code = app.run_with_args(&args);
@@ -116,9 +116,9 @@ fn window(app: &adw::Application) -> Option<Window> {
 /// terminal nobody launching from the desktop has open. Nothing is saved:
 /// the accounts that could not be read are still on disk as they were.
 fn cannot_start(app: &adw::Application, why: &str) {
-    eprintln!("roblox-manager: {why}");
+    eprintln!("headcount: {why}");
     let dialog = adw::AlertDialog::new(
-        Some("Roblox Manager Could Not Start"),
+        Some("Headcount Could Not Start"),
         Some(&format!("{why}\n\nNothing was changed or overwritten.")),
     );
     dialog.add_response("close", "_Close");
@@ -139,13 +139,13 @@ fn load_style() {
     // is said and the app goes on.
     let icons = rbxmgr_core::Paths::from_env().cache().join("ui-icons");
     if let Err(e) = ui::icons::install(&icons) {
-        eprintln!("roblox-manager: could not write the app's icons to {}: {e}", icons.display());
+        eprintln!("headcount: could not write the app's icons to {}: {e}", icons.display());
     }
     // The design's type, the same on every machine; without it the
     // desktop's fonts stand in.
     let fonts = rbxmgr_core::Paths::from_env().cache().join("ui-fonts");
     if let Err(e) = ui::fonts::install(&fonts) {
-        eprintln!("roblox-manager: could not load the app's fonts: {e}");
+        eprintln!("headcount: could not load the app's fonts: {e}");
     }
     let Some(display) = gdk::Display::default() else { return };
     // Scrollbars float over the content and fade when idle, whatever the

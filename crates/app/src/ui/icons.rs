@@ -370,7 +370,7 @@ const ICONS: &[(&str, &str, &str)] = &[
 ];
 
 /// The app's own mark, in colour.
-const BRAND: &str = include_str!("../../../../packaging/icons/roblox-manager.svg");
+const BRAND: &str = include_str!("../../../../packaging/icons/headcount.svg");
 
 fn svg(d: &str) -> String {
     format!(

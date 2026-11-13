@@ -1,8 +1,8 @@
-# The Roblox manager as a Flatpak: one build for every distro, updated with
+# Headcount as a Flatpak: one build for every distro, updated with
 # the rest of the user's Flatpaks.
 #
 #   packaging/flatpak/build.sh            build and install for this user
-#   packaging/flatpak/build.sh --bundle   also write roblox-manager.flatpak
+#   packaging/flatpak/build.sh --bundle   also write headcount.flatpak
 #
 # The Flatpak is for packaging, not confinement: the manager runs Roblox
 # clients, finds and stops them on the host, and keeps the same data a
@@ -30,7 +30,7 @@ sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
   - org.freedesktop.Sdk.Extension.llvm20
-command: roblox-manager
+command: headcount
 
 finish-args:
   - --socket=wayland
@@ -43,7 +43,7 @@ finish-args:
   - --socket=pulseaudio
   - --filesystem=xdg-run/pipewire-0:ro
   # The same accounts, groups, macros and Cordial profiles as a native
-  # install (roblox-manager.sh points the XDG homes back at the host's), and
+  # install (headcount.sh points the XDG homes back at the host's), and
   # the old Cordial Flatpak's data for the one-time migration.
   - --filesystem=home
   # Sessions live in the Secret Service, under the attributes native
@@ -196,20 +196,20 @@ modules:
       - cordial-cargo-sources.json
 
   # -- the manager ----------------------------------------------------------
-  - name: roblox-manager
+  - name: headcount
     buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin
       env:
-        CARGO_HOME: /run/build/roblox-manager/cargo
+        CARGO_HOME: /run/build/headcount/cargo
     build-commands:
       - cargo build --release --offline -p rbxmgr
-      - install -Dm755 target/release/roblox-manager /app/libexec/roblox-manager
-      - install -Dm755 packaging/flatpak/roblox-manager.sh /app/bin/roblox-manager
+      - install -Dm755 target/release/headcount /app/libexec/headcount
+      - install -Dm755 packaging/flatpak/headcount.sh /app/bin/headcount
       # The window asks for these names; the launcher's icon must carry the
       # app id to be exported.
-      - install -Dm644 packaging/icons/roblox-manager.svg /app/share/icons/hicolor/scalable/apps/roblox-manager.svg
-      - install -Dm644 packaging/icons/roblox-manager.svg /app/share/icons/hicolor/scalable/apps/io.github.mujo.RobloxManager.svg
+      - install -Dm644 packaging/icons/headcount.svg /app/share/icons/hicolor/scalable/apps/headcount.svg
+      - install -Dm644 packaging/icons/headcount.svg /app/share/icons/hicolor/scalable/apps/io.github.mujo.RobloxManager.svg
       - install -Dm644 packaging/flatpak/io.github.mujo.RobloxManager.desktop /app/share/applications/io.github.mujo.RobloxManager.desktop
       - install -Dm644 packaging/flatpak/io.github.mujo.RobloxManager.metainfo.xml /app/share/metainfo/io.github.mujo.RobloxManager.metainfo.xml
     sources:
@@ -217,7 +217,7 @@ modules:
         path: ../..
         skip:
           - .git
-          - roblox-manager.flatpak
+          - headcount.flatpak
           - target
           - result
           - docs

@@ -22,11 +22,11 @@ fn relayed(argv: &[String]) -> Vec<String> {
 #[test]
 fn a_relay_s_arguments_carry_the_display_and_the_whole_client_command() {
     let argv = argv(
-        Path::new("/app/libexec/roblox-manager"),
+        Path::new("/app/libexec/headcount"),
         Path::new("/run/user/1000/rbxmgr/rbxmgr-7.wayland"),
         &strings(&["cordial-run", "--profile", "rbxmgr-7", "--", "x"]),
     );
-    assert_eq!(argv[0], "/app/libexec/roblox-manager");
+    assert_eq!(argv[0], "/app/libexec/headcount");
     assert_eq!(
         parse(&relayed(&argv)),
         Some((

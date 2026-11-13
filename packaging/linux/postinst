@@ -3,11 +3,11 @@
 # bundle's AppRun needs one, so it gets a profile there. Other systems have
 # no such restriction, and nothing is done.
 set -e
-profile=/usr/share/roblox-manager/apparmor-profile
+profile=/usr/share/headcount/apparmor-profile
 if [ -f "$profile" ] && [ -e /proc/sys/kernel/apparmor_restrict_unprivileged_userns ]; then
-    install -Dm644 "$profile" /etc/apparmor.d/roblox-manager
+    install -Dm644 "$profile" /etc/apparmor.d/headcount
     if command -v apparmor_parser >/dev/null 2>&1; then
-        apparmor_parser -r -T -W /etc/apparmor.d/roblox-manager || true
+        apparmor_parser -r -T -W /etc/apparmor.d/headcount || true
     fi
 fi
 exit 0

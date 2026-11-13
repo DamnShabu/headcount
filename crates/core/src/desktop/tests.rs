@@ -30,11 +30,11 @@ impl World {
 #[test]
 fn an_appimage_gets_an_entry_that_runs_its_file_and_becomes_the_default() {
     let w = world();
-    let h = w.handler(Install::AppImage("/home/u/Apps/roblox-manager.AppImage".into()));
+    let h = w.handler(Install::AppImage("/home/u/Apps/headcount.AppImage".into()));
     assert_eq!(h.current(), Handler::Unset);
     h.claim().unwrap();
     let written = fs::read_to_string(w.user_entry()).unwrap();
-    assert!(written.contains("\nExec=/home/u/Apps/roblox-manager.AppImage %u\n"), "{written}");
+    assert!(written.contains("\nExec=/home/u/Apps/headcount.AppImage %u\n"), "{written}");
     assert!(
         written.contains("\nMimeType=x-scheme-handler/roblox-player;x-scheme-handler/roblox;\n")
     );
@@ -68,8 +68,8 @@ fn a_flatpak_writes_no_entry_of_its_own() {
 fn a_native_install_uses_its_installed_entry() {
     let w = world();
     fs::create_dir_all(w.system_entry().parent().unwrap()).unwrap();
-    fs::write(w.system_entry(), "[Desktop Entry]\nExec=roblox-manager %u\n").unwrap();
-    w.handler(Install::Native("/nix/store/x/bin/roblox-manager".into())).claim().unwrap();
+    fs::write(w.system_entry(), "[Desktop Entry]\nExec=headcount %u\n").unwrap();
+    w.handler(Install::Native("/nix/store/x/bin/headcount".into())).claim().unwrap();
     assert!(!w.user_entry().exists());
     assert_eq!(w.handler(Install::Flatpak).current(), Handler::Here);
 }
@@ -77,9 +77,9 @@ fn a_native_install_uses_its_installed_entry() {
 #[test]
 fn a_bare_binary_gets_an_entry_for_itself() {
     let w = world();
-    w.handler(Install::Native("/opt/rbx/roblox-manager".into())).claim().unwrap();
+    w.handler(Install::Native("/opt/rbx/headcount".into())).claim().unwrap();
     let written = fs::read_to_string(w.user_entry()).unwrap();
-    assert!(written.contains("\nExec=/opt/rbx/roblox-manager %u\n"));
+    assert!(written.contains("\nExec=/opt/rbx/headcount %u\n"));
 }
 
 #[test]
@@ -87,7 +87,7 @@ fn an_entry_someone_else_wrote_is_left_alone() {
     let w = world();
     fs::create_dir_all(w.user_entry().parent().unwrap()).unwrap();
     fs::write(w.user_entry(), "[Desktop Entry]\nExec=my-wrapper %u\n").unwrap();
-    let h = w.handler(Install::Native("/opt/rbx/roblox-manager".into()));
+    let h = w.handler(Install::Native("/opt/rbx/headcount".into()));
     h.claim().unwrap();
     assert_eq!(
         fs::read_to_string(w.user_entry()).unwrap(),
@@ -119,7 +119,7 @@ fn a_generated_entry_gives_way_to_an_installed_one() {
     w.handler(Install::AppImage("/a/x.AppImage".into())).claim().unwrap();
     fs::create_dir_all(w.system_entry().parent().unwrap()).unwrap();
     fs::write(w.system_entry(), "[Desktop Entry]\n").unwrap();
-    assert!(w.handler(Install::Native("/usr/bin/roblox-manager".into())).refresh().unwrap());
+    assert!(w.handler(Install::Native("/usr/bin/headcount".into())).refresh().unwrap());
     assert!(!w.user_entry().exists());
 }
 

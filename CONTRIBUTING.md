@@ -4,13 +4,13 @@ Thanks for helping. Bug reports, fixes and ideas are all welcome.
 
 ## Reporting a bug or asking for a feature
 
-[Open an issue](https://github.com/DamnShabu/roblox-manager/issues/new/choose)
+[Open an issue](https://github.com/DamnShabu/headcount/issues/new/choose)
 and fill in the form. For a bug, the Activity log and the client's log
 (`~/.cache/rbxmgr/logs`) usually say what went wrong. **Never paste a
 session cookie** (`.ROBLOSECURITY`) into an issue.
 
 Security problems go through a
-[private advisory](https://github.com/DamnShabu/roblox-manager/security/advisories/new)
+[private advisory](https://github.com/DamnShabu/headcount/security/advisories/new)
 instead. See [SECURITY.md](SECURITY.md).
 
 ## Changing the code

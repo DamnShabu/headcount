@@ -48,3 +48,32 @@ fn each_package_tells_the_app_which_it_is() {
     }
     assert!(packages.contains(&format!("{}=$format", rbxmgr_core::install::PACKAGE_VAR)));
 }
+
+/// Up to 0.13 the app was Roblox Manager, and those copies update from files
+/// named `roblox-manager...`: the workflow publishes each file under that
+/// name too, by swapping the prefix.
+#[test]
+fn copies_from_before_the_rename_still_find_their_file() {
+    if std::env::consts::ARCH != "x86_64" {
+        return;
+    }
+    let workflow = repo_file(".github/workflows/release.yml");
+    assert!(
+        workflow.contains(
+            r#"for f in headcount[-_]*; do cp -- "$f" "roblox-manager${f#headcount}"; done"#
+        ),
+        "release.yml no longer publishes the names from before the rename"
+    );
+    let installs = [
+        Install::AppImage("/x".into()),
+        Install::Flatpak,
+        Install::Package(PackageFormat::Deb),
+        Install::Package(PackageFormat::Rpm),
+        Install::Package(PackageFormat::Arch),
+    ];
+    for install in installs {
+        let name = asset_name(&install, "9.8.7").unwrap();
+        let rest = name.strip_prefix("headcount").unwrap_or_default();
+        assert!(rest.starts_with(['-', '_']), "{name} is not matched by headcount[-_]*");
+    }
+}

@@ -3,17 +3,17 @@
 #
 #   cordial-run    one account's game client (the fork's engine binary)
 #   cordial-fetch  installs the Roblox build (0002: the fork's `stacked
-#                  install` / `update`, reporting in JSON for the manager)
+#                  install` / `update`, reporting in JSON for Headcount)
 #
 # Everything a launcher does -- accounts, sessions, joining servers, updates --
-# is the Roblox manager's job (crates/), so the fork's own launcher (the
+# is Headcount's job (crates/), so the fork's own launcher (the
 # `stacked` binary), its Deno plugin runtime and its packaging are left out.
 # The engine's window is still GTK4: it lives in the cordial-shell crate, and
 # cordial-run links it as a library.
 #
 # Which source is built is source.json, the one pin this file and the
 # Flatpak manifest share (crates/core/tests/cordial_pin.rs keeps them in
-# step). README.md beside it says what the manager needs from that source
+# step). README.md beside it says what Headcount needs from that source
 # and how to move it to another commit.
 #
 # Patches (source.json's "patches", applied in order):

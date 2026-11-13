@@ -1,15 +1,15 @@
-# roblox-manager as one file for other distros (Arch, ...): its GTK
+# headcount as one file for other distros (Arch, ...): its GTK
 # and the Cordial fork (cordial-run, cordial-fetch) come from the bundled
 # closure; pgrep and a Secret Service (gnome-keyring, KWallet) come from the
 # host. Needs unprivileged user namespaces. It also runs on NixOS, though the
 # module is the better fit there.
 #
-#   nix build .#roblox-manager-appimage
+#   nix build .#headcount-appimage
 {
   pkgs,
   lib,
   nix-appimage,
-  roblox-manager,
+  headcount,
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
 
@@ -33,7 +33,7 @@
     </fontconfig>
   '';
 
-  portable = pkgs.writeShellScriptBin "roblox-manager" ''
+  portable = pkgs.writeShellScriptBin "headcount" ''
     # appimage-run -- which NixOS routes every AppImage through -- runs it
     # under no_new_privs, and there flatpak's bwrap cannot map ids for its user
     # namespace: Cordial fails to start. Start the extracted
@@ -72,7 +72,7 @@
       done
       export SSL_CERT_FILE
     fi
-    exec ${lib.getExe roblox-manager} "$@"
+    exec ${lib.getExe headcount} "$@"
   '';
 
   # nix-appimage's AppRun, patched (apprun.patch):
@@ -97,6 +97,6 @@
 in
   (nix-appimage.lib.${system}.mkAppImage.override {mkappimage-apprun = apprun;}) {
     program = lib.getExe portable;
-    name = "roblox-manager-x86_64.AppImage";
+    name = "headcount-x86_64.AppImage";
     squashfsArgs = ["-comp" "zstd" "-Xcompression-level" "19"];
   }

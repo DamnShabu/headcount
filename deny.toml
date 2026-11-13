@@ -15,7 +15,7 @@ ignore = [
     # zstd 0.13 / zstd-safe 7, through backhand 0.25.5, which has no release
     # on the fixed zstd 0.14 / zstd-safe 8.2 yet. backhand only decompresses
     # with a fresh `zstd::bulk::Decompressor` per block, and only the Stacked
-    # AppImage the manager downloads: no streaming context to reuse, no
+    # AppImage Headcount downloads: no streaming context to reuse, no
     # seekable frames, no streaming legacy frames. Drop these with the bump.
     { id = "RUSTSEC-2026-0391", reason = "streaming context reuse; backhand decompresses in bulk" },
     { id = "RUSTSEC-2026-0398", reason = "zstd Seekable API; never used" },

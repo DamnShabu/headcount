@@ -3,14 +3,14 @@
 ## How it fits together
 
 Roblox runs in Cordial, an open-source runtime for Roblox's official Android
-build. The manager uses this repo's fork of it, Stacked, as two command-line
+build. Headcount uses this repo's fork of it, Stacked, as two command-line
 tools: `cordial-run` starts each account's client and `cordial-fetch` gets
 the Roblox build. `cordial/source.json` pins the source, and
-`cordial/README.md` covers what the manager needs from it and how to move the
+`cordial/README.md` covers what Headcount needs from it and how to move the
 pin.
 
 Each account has its own Cordial profile (`rbxmgr-<user id>`). Before a
-launch the manager writes the account's session into that profile, then
+launch Headcount writes the account's session into that profile, then
 starts the client with the game's deep link. Nothing is injected into the
 client. Sessions (`.ROBLOSECURITY` cookies) live only in the Secret Service.
 
@@ -18,8 +18,8 @@ A macro-ready account's client runs inside its own nested `cage` display.
 Macros play into that display through Wayland's virtual keyboard and pointer,
 so the user's real input devices are never involved.
 
-The client itself runs behind a relay: the manager's own binary, started as
-`roblox-manager --relay DISPLAY_FILE -- cordial-run ...` inside the cage. It
+The client itself runs behind a relay: Headcount's own binary, started as
+`headcount --relay DISPLAY_FILE -- cordial-run ...` inside the cage. It
 passes the client's Wayland connection through to cage unchanged and, only
 while the editor has a recording armed on its report socket
 (`<profile>.record`, beside the display link), reports the key, button,
@@ -37,7 +37,7 @@ A Rust workspace:
   `macros`, `update`. It has no GTK dependency. Every seam into the outside
   world (Secret Service, Roblox's web API, GitHub, PackageKit, processes, the
   Wayland display) is a trait with a production adapter and a test adapter.
-- `crates/app` (`roblox-manager`) is the GTK4/libadwaita window on top of it.
+- `crates/app` (`headcount`) is the GTK4/libadwaita window on top of it.
   Slow work runs on worker threads and the results come back to the main
   loop. `resources/style.css` holds the few things the window adds to
   Adwaita: the amber accent, the warm surfaces (`style-dark.css` for the dark
@@ -49,8 +49,8 @@ A Rust workspace:
 ## Building
 
 ```bash
-nix run .                               # run the manager
-nix build .#roblox-manager-appimage     # an AppImage (x86_64)
+nix run .                               # run Headcount
+nix build .#headcount-appimage     # an AppImage (x86_64)
 packaging/flatpak/build.sh              # a Flatpak, installed for this user
 ```
 
@@ -88,7 +88,7 @@ bundle, then publishes all of them with their `SHA256SUMS` as the GitHub
 release that the in-app updater reads. A tag with a pre-release part
 (`v0.3.0-rc.1`) is published as a pre-release, and the updater never offers
 those. Each asset gets a build-provenance attestation
-(`gh attestation verify FILE -R DamnShabu/roblox-manager`).
+(`gh attestation verify FILE -R DamnShabu/headcount`).
 
 ## Scripting the window
 

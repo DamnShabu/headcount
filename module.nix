@@ -12,12 +12,12 @@
       # Named after the app id, which is the window's Wayland app_id: docks and
       # task bars find a window's icon through the entry of that name.
       name = "io.github.mujo.RobloxManager";
-      desktopName = "Roblox Manager";
+      desktopName = "Headcount";
       genericName = "Roblox Account Manager";
       comment = "Launch several Roblox accounts into the same server";
       icon = "io.github.mujo.RobloxManager";
       # %u: a join link from the browser opens its popup.
-      exec = "roblox-manager %u";
+      exec = "headcount %u";
       terminal = false;
       # X11's match, for the same reason (GTK sets WM_CLASS to the app id).
       startupWMClass = "io.github.mujo.RobloxManager";

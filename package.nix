@@ -1,4 +1,4 @@
-# The roblox-manager derivation, shared by the NixOS module (module.nix)
+# The headcount derivation, shared by the NixOS module (module.nix)
 # and the portable AppImage (appimage.nix).
 {pkgs}: let
   cordial = import ./cordial/package.nix {inherit pkgs;};
@@ -8,7 +8,7 @@ in
   # loaders, and enumerating those by hand is how you get an app that starts
   # and then draws nothing.
   pkgs.rustPlatform.buildRustPackage {
-    pname = "mujo-roblox-manager";
+    pname = "mujo-headcount";
     version = (builtins.fromTOML (builtins.readFile ./Cargo.toml)).workspace.package.version;
     src = pkgs.lib.fileset.toSource {
       root = ./.;
@@ -24,7 +24,7 @@ in
         ./.github/workflows/release.yml
         ./packaging/linux/build.sh
         # The app's mark, built into it (crates/app/src/ui/icons.rs).
-        ./packaging/icons/roblox-manager.svg
+        ./packaging/icons/headcount.svg
       ];
     };
     cargoLock.lockFile = ./Cargo.lock;
@@ -45,8 +45,8 @@ in
     # (docks and the About dialog look it up by that) and its old name. The
     # Flatpak installs the same files.
     postInstall = ''
-      install -Dm644 ${./packaging/icons/roblox-manager.svg} $out/share/icons/hicolor/scalable/apps/roblox-manager.svg
-      install -Dm644 ${./packaging/icons/roblox-manager.svg} $out/share/icons/hicolor/scalable/apps/io.github.mujo.RobloxManager.svg
+      install -Dm644 ${./packaging/icons/headcount.svg} $out/share/icons/hicolor/scalable/apps/headcount.svg
+      install -Dm644 ${./packaging/icons/headcount.svg} $out/share/icons/hicolor/scalable/apps/io.github.mujo.RobloxManager.svg
     '';
 
     # The fork of Cordial (cordial-run, cordial-fetch) is prepended, so it is
@@ -63,5 +63,5 @@ in
       )
     '';
 
-    meta.mainProgram = "roblox-manager";
+    meta.mainProgram = "headcount";
   }
